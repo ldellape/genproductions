@@ -6,10 +6,27 @@ diff --git a/Template/NLO/Source/make_opts.inc b/Template/NLO/Source/make_opts.i
  
  # Increase the number of allowed charcters in a Fortran line
 -FFLAGS+= -ffixed-line-length-132
-+FFLAGS+= -ffixed-line-length-300
++FFLAGS+= -ffixed-line-length-2000 --no-relax -mcmodel=medium
  
  # Set FC unless it's defined by an environment variable
- ifeq ($(origin FC),default)
+ ifeq ($(origin FC),default
+diff --git a/Template/LO/Source/.make_opts b/Template/LO/Source/.make_opts
+--- a/Template/LO/Source/.make_opts 
++++ b/Template/LO/Source/.make_opts 
+@@ -16,2 +16,2 @@ 
+-FFLAGS= -w -fPIC
++FFLAGS= -O -w -fbounds-check -fPIC -mmovbe -mcmodel=medium
+ #FFLAGS+= -g -fbounds-check -ffpe-trap=invalid,zero,overflow,underflow,denormal -Wall
+diff --git a/madgraph/various/misc.py b/madgraph/various/misc.py
+--- a/madgraph/various/misc.py
++++ b/madgraph/various/misc.py
+@@ -451,4 +451,6 @@ wait_once = False
+ def multiple_try(nb_try=5, sleep=20):
+
++    nb_try=100
++    sleep=90
+     def deco_retry(f):
+
 diff --git a/madgraph/iolibs/export_v4.py b/madgraph/iolibs/export_v4.py
 --- a/madgraph/iolibs/export_v4.py
 +++ b/madgraph/iolibs/export_v4.py

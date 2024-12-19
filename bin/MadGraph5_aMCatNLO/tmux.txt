@@ -1,0 +1,5 @@
+> systemctl --user start tmux.service
+> tmux attach 
+> cd genproductions/bin/MadGraph5 directory 
+> reset
+> submit_cmsconnect_gridpack_generation.sh [name_of_cards_directory] [relative path to the directory] 

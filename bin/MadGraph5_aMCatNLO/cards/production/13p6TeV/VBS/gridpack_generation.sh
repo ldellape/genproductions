@@ -241,17 +241,17 @@ make_gridpack () {
     #         echo "set cluster_queue $queue" >> mgconfigscript
           fi 
           if [ $iscmsconnect -gt 0 ]; then
-    	  n_retries=100
+    	  n_retries=10
     	  long_wait=300
     	  short_wait=120
           else
-    	  n_retries=100
-    	  long_wait=500
-    	  short_wait=200
+    	  n_retries=3
+    	  long_wait=60
+    	  short_wait=30
           fi
           echo "set cluster_status_update $long_wait $short_wait" >> mgconfigscript
           echo "set cluster_nb_retry $n_retries" >> mgconfigscript
-          echo "set cluster_retry_wait 600" >> mgconfigscript
+          echo "set cluster_retry_wait 300" >> mgconfigscript
           #echo "set cluster_local_path `${LHAPDFCONFIG} --datadir`" >> mgconfigscript 
           if [[ ! "$RUNHOME" =~ ^/afs/.* ]]; then
               echo "local path is not an afs path, batch jobs will use worker node scratch space instead of afs"
